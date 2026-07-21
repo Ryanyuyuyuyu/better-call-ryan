@@ -31,6 +31,8 @@ The Golden Call in this prototype is Alex, a basketball friend, calling after pi
 
 The client is an Expo SDK 57 React Native app with one call state machine shared across iOS, Android, and web. Expo Notifications schedules local practice calls. Expo Audio, Speech, and Haptics provide the deterministic mobile demo and tactile call experience.
 
+I collaborated with Codex throughout OpenAI Build Week to turn the original idea into a scoped product, iterate on the phone-first interface, implement the call and scheduling state machines, create the secure server boundary, and verify the project with typed validation, scheduler tests, linting, and a production web export. Codex also helped sharpen the product decisions that distinguish the experience from a chatbot: the caller begins in character, the microphone stays open, the live call has no transcript, and teaching waits until after the call.
+
 For unscripted voice calls, the web adapter uses full-duplex WebRTC and OpenAI `gpt-realtime-2.1`. The microphone is open by default like a normal call, with mute/unmute and semantic-VAD interruption instead of push-to-talk. Learners can choose from all ten built-in Realtime voices before the call, with the choice stored locally and validated again at the server. A small Express service creates the Realtime session through OpenAI's unified server interface, so the standard API key never enters the app. The Realtime caller receives a private practical objective, an in-character first line, and strict role rules: initiate the situation like a real friend, never become a tutor or assistant during the call, vary pace and emphasis by meaning, and repair misunderstanding naturally.
 
 After the call, the server sends the transcript to `gpt-5.6-sol`. Structured Outputs constrain the result to the Call Receipt schema, producing consistent outcome, comprehension, missed-cue, phrasing, and replay fields.
@@ -66,7 +68,7 @@ The valuable part of language practice is not always longer conversation. A 90-s
 4. Add replayable 15-second moments instead of replaying whole calls.
 5. Explore CallKit and Android ConnectionService only after consent, abuse prevention, and platform-review requirements are designed.
 
-## 90-second demo script
+## 105-second demo script
 
 **0:00–0:12 — The problem**  
 “Voice AI is good, but I still have to open the app, pick a topic, and start practicing. Real English usually gives me no warm-up.”
@@ -77,13 +79,16 @@ Show Alex and the 7:30–8:00 availability window. Tap “Schedule a demo call i
 **0:25–0:35 — Incoming call**  
 Let the full-screen Alex call interrupt the demo. Point out the visible Practice Call label, then answer.
 
-**0:35–1:03 — Live call**  
+**0:35–1:05 — Live call**  
 Let Alex open naturally. Respond with one imperfect phrase and ask Alex to repeat the question about Kevin. Show that the call stays voice-first with no transcript or suggested reply.
 
-**1:03–1:20 — Receipt**  
+**1:05–1:22 — Receipt**  
 Hang up. Show task completion, the meaning of “You still around?”, and the more natural version “Yeah, I can be there in about twenty.”
 
-**1:20–1:30 — Close**  
+**1:22–1:38 — How it was built**  
+“I built Better Call Ryan with Codex, which helped turn the product idea into the call state machine, scheduling flow, secure API boundary, and tested implementation. GPT Realtime powers the low-latency conversation, while GPT-5.6 Sol turns natural-language schedules and completed calls into reliable structured results.”
+
+**1:38–1:45 — Close**  
 “Better Call Ryan does not make English practice feel like homework. It makes everyday English call you first.”
 
 ## Current demo notes
