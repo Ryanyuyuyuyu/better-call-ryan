@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Better Call Ryan",
+    "slug": "better-call-ryan",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/better-call-ryan-icon.png",
+    "scheme": "bettercallryan",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "bundleIdentifier": "com.ryanshi.bettercallryan",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Better Call Ryan uses your microphone during practice calls."
+      }
+    },
+    "android": {
+      "package": "com.ryanshi.bettercallryan",
+      "permissions": [
+        "RECORD_AUDIO",
+        "POST_NOTIFICATIONS"
+      ],
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/better-call-ryan-icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-notifications",
+        {
+          "color": "#FF6242",
+          "defaultChannel": "incoming-practice-calls-silent-v3"
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#F4F0E7",
+          "image": "./assets/images/better-call-ryan-icon.png",
+          "imageWidth": 150
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow Better Call Ryan to hear you during practice calls."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
